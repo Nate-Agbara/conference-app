@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <img  th:src="@{images/conference-header.jpg}" alt="header" width="100%" height="200px" />
     <title>Registration</title>
     <style>
         .error {
@@ -13,13 +14,19 @@
             border: 3px solid #ff0000;
             padding: 8px;
             margin: 16px;
+        }
 
+        body {
+            text-align: center;
+        }
+        form {
+            display: inline-block;
         }
 
     </style>
 </head>
 <body>
-<h1>Registration</h1>
+<h1 align="center">Registration</h1>
     <form action="registration" method="post" th:object="${registration}" >
         <div>
             <p th:text="#{NotEmpty.registration.name}" th:if="${#fields.hasErrors('name')}" th:class="${#fields.hasErrors('name')}? errorblock">
@@ -37,6 +44,19 @@
             </td>
             <td>
                 <p th:text="#{NotEmpty.registration.name}" th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="${registration.name}" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                <label th:text="#{email}">Email:</label>
+            </td>
+            <td>
+
+                <input type="email" th:field="${registration.email}" />
+            </td>
+            <td>
+                <p th:text="#{NotEmpty.registration.email}" th:if="${#fields.hasErrors('email')}" th:errorclass="error" th:errors="${registration.email}" />
             </td>
         </tr>
         <tr>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration</title>
+    <style>
+        .error {
+            color: #ff0000;
+        }
+
+        .errorblock {
+            color: #000;
+            background-color: #ffEEEE;
+            border: 3px solid #ff0000;
+            padding: 8px;
+            margin: 16px;
+
+        }
+
+    </style>
+</head>
+<body>
+<h1>Registration</h1>
+    <form action="registration" method="post" th:object="${registration}" >
+        <div>
+            <p th:text="#{NotEmpty.registration.name}" th:if="${#fields.hasErrors('name')}" th:class="${#fields.hasErrors('name')}? errorblock">
+                </p>
+        </div>
+    <table>
+        <tr>
+            <td>
+
+                <label th:text="#{name}">Name:</label>
+            </td>
+            <td>
+
+                <input type="text" th:field="${registration.name}" />
+            </td>
+            <td>
+                <p th:text="#{NotEmpty.registration.name}" th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="${registration.name}" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <input type="submit" value="Add Registration">
+            </td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>

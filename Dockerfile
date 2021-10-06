@@ -1,4 +1,4 @@
-FROM java:8
+FROM tomcat
 EXPOSE 8080
 ADD /target/conference.war conference.war
-ENTRYPOINT ["java","-war","conference.war"]
+ENTRYPOINT ["tomcat","-war","conference.war"]
